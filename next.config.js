@@ -10,9 +10,9 @@ const nextConfig = {
       },
     ],
   },
-  // Add these two blocks to bypass the "stuck" build steps
+  // This tells Vercel to stop hanging on the step you are currently viewing
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true, 
   },
   eslint: {
     ignoreDuringBuilds: true,
