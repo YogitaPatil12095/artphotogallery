@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --charcoal: #3B3735;
+    --cream: #D8D1BF;
+    --dusty-pink: #D8B7B3;
+    --soft-blue: #B7C8CF;
+    --off-white: #F4F0E8;
+    --muted-text: #2F2F2F;
+    --warm-brown: #8B7355;
+    --light-cream: #EDE8DC;
+    --folder-shadow: #C4BAA6;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: #D8B7B3;
+    color: #2F2F2F;
+  }
+}
+
+@layer components {
+  .folder-card {
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .folder-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(59, 55, 53, 0.3);
+  }
+
+  .folder-tab {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    padding: 4px 16px;
+    border-radius: 6px 6px 0 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .masonry-grid {
+    display: flex;
+    margin-left: -8px;
+    width: auto;
+  }
+
+  .masonry-grid-column {
+    padding-left: 8px;
+    background-clip: padding-box;
+  }
+
+  .masonry-grid-column > div {
+    margin-bottom: 8px;
+  }
+
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(59, 55, 53, 0.95);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--charcoal);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--warm-brown);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--cream);
+  }
+
+  /* Film grain overlay effect */
+  .film-grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* Admin sidebar */
+  .admin-nav-item {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-mono transition-all duration-150;
+  }
+
+  .admin-nav-item:hover {
+    @apply bg-charcoal/60 text-off-white;
+  }
+
+  .admin-nav-item.active {
+    @apply bg-charcoal text-off-white;
+  }
+
+  /* Drag handle */
+  .drag-handle {
+    cursor: grab;
+  }
+
+  .drag-handle:active {
+    cursor: grabbing;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
